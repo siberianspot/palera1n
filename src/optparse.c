@@ -21,7 +21,7 @@ static bool force_use_verbose_boot = false;
 static struct option longopts[] = {
 	{"setup-partial-fakefs", no_argument, NULL, 'B'},
 	{"setup-fakefs", no_argument, NULL, 'c'},
-	{"clean-fakefs", no_argument, NULL, 'c'},
+	{"clean-fakefs", no_argument, NULL, 'C'},
 	{"dfuhelper", no_argument, NULL, 'D'},
 	{"help", no_argument, NULL, 'h'},
 	{"pongo-shell", no_argument, NULL, 'p'},
@@ -250,7 +250,7 @@ int optparse(int argc, char* argv[]) {
 				LOG(LOG_ERROR, "Failed to map file %s: %d (%s)", optarg, errno, strerror(errno));
 				return -1;
 			}
-			if (boyermoore_horspool_memmem(addr, st.st_size, (const unsigned char*)"[ra1npoc15-part] thanks to", strlen("[ra1npoc15-part] thanks to")) != NULL) 
+			if (boyermoore_horspool_memmem(addr, st.st_size, (const unsigned char*)"[ra1npoc15-part] thanks to", strlen("[ra1npoc15-part] thanks to")) != NULL)
 				{
 					host_flags |= palerain_option_checkrain_is_clone;
 					LOG(LOG_VERBOSE3, "%s is checkra1n clone", optarg);
@@ -322,7 +322,7 @@ int optparse(int argc, char* argv[]) {
 	if ((strstr(xargs_cmd, "serial=") != NULL) && !force_use_verbose_boot && checkrain_options_enabled(palerain_flags, palerain_option_setup_rootful)) {
 		kpf_flags &= ~checkrain_option_verbose_boot;
 	}
-    
+
 	snprintf(checkrain_flags_cmd, 0x20, "checkra1n_flags 0x%x", checkrain_flags);
 	snprintf(palerain_flags_cmd, 0x20, "palera1n_flags 0x%x", palerain_flags);
 	snprintf(kpf_flags_cmd, 0x20, "kpf_flags 0x%x", kpf_flags);
